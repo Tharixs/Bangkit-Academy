@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">LearnIntent</string>
+    <string name="next_view">Halaman Berikutnya</string>
+    <string name="move_with_data">Halaman Dengan Data</string>
+    <string name="move_with_result">Pindah Activity Untuk Result</string>
+    <string name="data_recive">Data Diterima</string>
+    <string name="move_with_obj">Berpindah dengan Object</string>
+    <string name="obj_recive">Data Object Diterima</string>
+    <string name="dial_number">Dial A Number</string>
+    <string name="choose_number">Pilih Angka Yang Kamu Suka</string>
+    <string name="_50">50</string>
+    <string name="_100">100</string>
+    <string name="_150">150</string>
+    <string name="_200">200</string>
+    <string name="choose">Pilih</string>
+    <string name="result_from_activity">Hasil Dari Activity</string>
+</resources>

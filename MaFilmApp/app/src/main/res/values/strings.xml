@@ -1,0 +1,141 @@
+<resources>
+    <string name="app_name">MaFilmApp</string>
+    <string name="heroes_name">Judul Film</string>
+    <string name="desk">Deskripsi</string>
+    <string name="duration">2h 15m</string>
+    <string name="star">4.5</string>
+    <string name="overview">Preview : </string>
+    <string name="sinop">Sinopsis : </string>
+    <string name="detile_data">Detile Data : </string>
+    <string name="tanggal_rilis">Tanggal Rilis : </string>
+    <string name="tanggal">Tanggal</string>
+    <string name="sutradara">Sutradara :</string>
+
+    <string-array name="data_star">
+        <item>5</item>
+        <item>4.5</item>
+        <item>5</item>
+        <item>4.5</item>
+        <item>3.5</item>
+        <item>3.4</item>
+        <item>4.5</item>
+        <item>5</item>
+        <item>4.5</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="data_sutradara">
+        <item>Anthony Russo, Joe Russo</item>
+        <item>Louis Leterrier</item>
+        <item>Barry Sonnenfeld</item>
+        <item>Jon Watts</item>
+        <item>Baran bo Odar</item>
+        <item>Donnie Yen, Kam Ka-Wai</item>
+        <item>Sidharta Tata</item>
+        <item>Peyton Reed</item>
+        <item>Benni Setiawan</item>
+        <item>Michael B. Jordan</item>
+    </string-array>
+
+    <string-array name="data_tanggal_rilis">
+        <item>24 April 2019</item>
+        <item>19 Mei 2023</item>
+        <item>24 Mei 2012</item>
+        <item>3 Juli 2019</item>
+        <item>12 Maret 2015</item>
+        <item>18 Januari 2023</item>
+        <item>9 Februari 2023</item>
+        <item>15 Februari 2023</item>
+        <item>23 Februari 2023</item>
+        <item>1 Maret 2023</item>
+    </string-array>
+
+    <string-array name="data_time">
+        <item>3h 15m</item>
+        <item>2h 45m</item>
+        <item>2h 15m</item>
+        <item>3h</item>
+        <item>2h 12m</item>
+        <item>2h 30m</item>
+        <item>2h 45m</item>
+        <item>2h 4m</item>
+        <item>1j 80m</item>
+        <item>1h 86m</item>
+    </string-array>
+
+    <string-array name="data_title">
+        <item>End Game</item>
+        <item>Fast And Fourius X</item>
+        <item>Man In Black III</item>
+        <item>Spider Man Far From Home</item>
+        <item>Who Am I</item>
+        <item>Sakrat</item>
+        <item>Waktu Magrib</item>
+        <item>Ant-Man and the Wasp: Quantumania</item>
+        <item>Bismillah Kunikahi Suamimu</item>
+        <item>Creed III (IMAX 2D)</item>
+    </string-array>
+
+    <string-array name="data_sinopsis">
+        <item>Film Avengers: Endgame merupaka sekuel terakhir dari rangkaian film The Avengers yang berada dalam timeline Marvel Cinematic Universe atau MCU. Film ini menceritakan peristiwa yang terjadi dalam rentang waktu lima tahun berselang dari film sebelumnya, Avengers: Infinity War. Pada Avengers: Infinity War, dikisahkan bahwa setengah populasi dunia hilang karena ulah Thanos.</item>
+        <item>Dalam melalui banyak misi dan menghadapi berbagai rintangan yang mustahil, Dom Toretto dan keluarganya telah mengakali, mengejutkan, dan mengalahkan semua musuh yang menghadang jalan mereka.
+            Kini mereka menghadapi lawan paling mematikan yang pernah mereka hadapi: ancaman menakutkan yang muncul dari bayang-bayang masa lalu yang didorong oleh hasrat balas dendam, dan bertekad untuk memecahkan keluarga Dom dan menghancurkan segala sesuatu, dan semua orang, yang Dom cintai.</item>
+        <item>Film laga bercampur komedi khas tentang kelompok agen pelindung bumi dari kawanan alien, Men In Black (2012) adalah seri ketiga dan merupakan seri terakhir dari trilogi original yang adaptasi komik berjudul sama karangan Lowell Cunningham.
+            Baca selengkapnya di artikel "Sinopsis Men In Black III, Film Laga Bercampur Komedi di Trans TV", https://tirto.id/fWHe</item>
+        <item>Spider-Man: Far From Home bercerita tentang kehidupan Peter Parker (Tom Holland) setelah Avengers: Endgame. Ia menjalani hidup dalam kesedihan karena kehilangan sang mentor, Tony Stark alias Iron Man.</item>
+        <item>Sorang tentara militan rahasia terdampar di hutan Afrika Selatan setelah misinya selesai. Ia tak memiliki ingatan tentang siapa dirinya &amp; siap pergi sejauh apapun demi mendapatkan sebuah jawaban.</item>
+        <item>Namun ia tiba-tiba dituduh sebagai seorang dari bangsa Khitan, yang membuatnya dikucilkan oleh teman dan sekutunya. Dalam perjalanannya untuk mencari tahu tentang asal dan musuhnya, Qiao Feng bertemu dengan Azhu, pelayan dari keluarga Murong, dan mereka saling jatuh cinta. Sayangnya, Qiao masuk ke perangkap Nyonya Ma dan membunuh Azhu secara tidak sengaja. Dia akhirnya mengetahui bahwa Murong Fu yang merencanakan semua ini untuk menghidupkan kembali kerajaan Yan.</item>
+        <item>Waktu Maghrib menceritakan tentang kekesalan Adi dan Saman yang selalu dimarahi oleh Bu Woro di sekolah, sebab keduanya sering terlambat masuk.
+        Bu Woro akhirnya memberikan hukuman untuk mereka. Keduanya kesal dengan hukuman yang diberikan.Suatu hari menjelang Maghrib, mereka menyumpahi Bu Woro agar segera meninggal. Tidak disangka, sumpahan tersebut menjadi kenyataan.</item>
+        <item>Pasca kejadian Civil War, Scott Lang (Paul Rudd) kembali bergulat dengan konsekuensi pilihannya sebagai superhero sekaligus sebagai seorang ayah. Saat dia berusaha berjuang untuk menyeimbangkan kembali kehidupannya dirumah dengan tanggungjawabnya sebagai Ant-Man, dia berhadapan dengan Hope van Dyne dan Dr.Hank Pym yang mendesaknya dengan misi baru. Scott kemudian harus belajar bekerjasama dengan Hope dan bertarung bersama dengan Wasp untuk mengungkap sebuah rahasia besar dari masa lalu.</item>
+        <item>Rumah tangga Malik (Rizky Nazar) dan Hanna (Mikha Tambayong) berada pada puncak bahagia, dimana mereka tengah menanti kelahiran anak pertama.
+Ketika melakukan konsultasi kehamilan, dokter kandungan Hanna berhalangan, dan diganti oleh dokter muda yang cantik, bernama Cathy (Syifa Hadju),
+yang ternyata adalah sahabatnya semasa SMA sekaligus mantan kekasih Malik.Naas, Hanna terjangkit kanker yang mengancam diri dan janinnya, sehingga perlu dilakukan operasi dalam waktu berdekatan dengan waktu kelahiran.</item>
+        <item>Usai mendominasi dunia tinju, Adonis Creed mengecap sukses baik dalam kariernya maupun kehidupan rumah tangganya. Hingga suatu hari seorang teman masa kecil yang juga seorang petinju berbakat sejak muda, Damian, kembali hadir setelah lama mendekam di penjara, dan tak sabar membuktikan bahwa dirinya juga layak mendapat kesempatan bersinar di ring tinju. Kedua mantan sahabat ini beradu lebih dari sekadar tinju. Demi menuntaskan segalanya, Adonis harus mempertaruhkan masa depannya dengan melawan Damian – seorang pejuang yang tanpa beban.</item>
+    </string-array>
+
+    <string-array name="data_desk">
+        <item>Melanjutkan Avengers Infinity War, dimana kejadian setelah Thanos berhasil mendapatkan semua infinity stones dan memusnahkan 50% semua mahluk hidup di alam semesta</item>
+        <item>Diterjemahkan dari bahasa Inggris-Fast X adalah film aksi Amerika mendatang yang disutradarai oleh Louis Leterrier dari skenario oleh Justin Lin, Zach Dean, dan Dan Mazeau.</item>
+        <item>Saat K dan nasib bumi terancam, J harus melakukan perjalanan lintas waktu, kembali ke masa lalu untuk menuntaskan semua masalah</item>
+        <item>Peter Parker (Tom Holland) tengah mengunjungi Eropa untuk liburan panjang bersama temaan-temanya</item>
+        <item>Who Am I adalah film techno-thriller Jerman tahun 2014 yang disutradarai oleh Baran bo Odar.</item>
+        <item>Pada dinasti Song Utara, Qiao Feng, seorang pemimpin dari Sekte Pengemis, adalah seorang pria heroik yang dihormati oleh seluruh dunia seni bela diri.</item>
+        <item>Adi dan Saman sering dihukum oleh Bu Woro, guru mereka yang disiplin dan galak</item>
+        <item>cott Lang (Paul Rudd), Hope Van Dyne (Evangeline Lilly) Dr. Hank Pym (Michael Douglas) dan Janet Van Dyne (Michelle Pfeiffer) menjelajahi Alam Kuantum, tempat mereka bertemu dengan makhluk aneh dan memulai petualangan yang melampaui batas yang mereka pikir mungkin.</item>
+        <item>Film yang diperan kan oleh Syifa Hadju , Rizky Nazar, Mikha Tambayong, Refal Hady mulai tayang pada tanggal cantik yaitu 23 02 20023</item>
+        <item>Adonis Creed (Michael B. Jordan) berkembang pesat baik dalam karier maupun kehidupan keluarganya, tetapi ketika seorang teman masa kecil dan mantan petinju datang, ia akan menghadapi lebih dari sekadar pertarungan.</item>
+    </string-array>
+
+    <string-array name="data_photo">
+        <item>https://cdn.cgv.id/uploads/movie/compressed/19022300.jpg</item>
+        <item>https://pbs.twimg.com/media/Fn0jutLaAAErIyW?format=jpg&amp;name=4096x4096</item>
+        <item>
+            https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQsa0H1hxjihg2QuPART5d-R-A-TeVVLRtFACja19mBUhriES09
+        </item>
+        <item>
+            https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZMgt4t1wb-PNIC89yYrhtzFiwsidy_7iHuUui3VKy&amp;usqp=CAE&amp;s
+        </item>
+        <item>
+            https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmFULnoDyClUG8I3aLkq_maG-QnPGbWL5eAfFRPgl5kAsuJeFJ
+        </item>
+        <item>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYGHmAxuAzNg4NMBnDX9zHa0HanYc5EYp1sbaR1dUHQUC4JEfAeZJs1Q5HPOvdZ6kNz-U&amp;usqp=CAU</item>
+        <item>
+           https://asset.tix.id/wp-content/uploads/2023/02/45df0f05-315a-4c44-bf1e-c94146ec17ea.jpeg
+        </item>
+        <item>
+           https://cdn.cgv.id/uploads/movie/compressed/23002900.jpg
+        </item>
+        <item>
+           https://cdn.cgv.id/uploads/movie/compressed/23001500.jpg
+        </item>
+        <item>
+         https://pbs.twimg.com/media/FhI2i58UYAA4tYd.jpg
+        </item>
+    </string-array>
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="about_name">Tharixs Akbar Ibnu Azis</string>
+    <string name="about_email">a063dsx1080@bangkit.academy</string>
+    <string name="about_photo">https://lh3.googleusercontent.com/a/AGNmyxb9frzQzFxOl7zZ6CpH5jBxPdp4PkixaYW1TMWf=s324</string>
+</resources>
