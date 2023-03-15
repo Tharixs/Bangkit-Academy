@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyThread</string>
+
+    <string name="start_task">Start Task</string>
+    <string name="status">Status: </string>
+    <string name="hiden_string">This is a hiden string</string>
+    <string name="task_completed">Task Completed</string>
+    <string name="compressing">Compresssing %d %%</string>
+</resources>
