@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.myauth'
+    namespace 'com.example.myviewmodel'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.myauth"
+        applicationId "com.example.myviewmodel"
         minSdk 21
         targetSdk 32
         versionCode 1
