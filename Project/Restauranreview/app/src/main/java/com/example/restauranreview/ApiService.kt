@@ -18,6 +18,5 @@ interface ApiService {
         @Field("review") review: String
     ): Call<PostReviewResponse>
 
-//    make fun delete data
     
 }

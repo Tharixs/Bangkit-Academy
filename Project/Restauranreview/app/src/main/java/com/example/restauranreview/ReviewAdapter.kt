@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ReviewAdapter(private val listReview: List<String>) : RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
+class ReviewAdapter(private val listReview: List<String>) :
+    RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_review, parent, false))
@@ -16,7 +17,6 @@ class ReviewAdapter(private val listReview: List<String>) : RecyclerView.Adapter
     }
 
     override fun getItemCount() = listReview.size
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvItem: TextView = view.findViewById(R.id.tvItem)
     }
