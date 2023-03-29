@@ -14,13 +14,6 @@ class DetileUserGitActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetileUserGitBinding
     private val mainViewModel by viewModels<MainViewModel>()
 
-    companion object {
-        private val TAB_TITLES = intArrayOf(
-            R.string.title_followers, R.string.title_following
-        )
-        const val EXTRA_NAME = "extra_name"
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +25,12 @@ class DetileUserGitActivity : AppCompatActivity() {
 
         mainViewModel.detile.observe(this) { detile ->
             setDetileData(detile)
+        }
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+        mainViewModel.isError.observe(this) { message ->
+            showError(message)
         }
 
         binding.viewPager.adapter = SectionAdapter(this)
@@ -68,5 +67,16 @@ class DetileUserGitActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        private val TAB_TITLES = intArrayOf(
+            R.string.title_followers, R.string.title_following
+        )
+        const val EXTRA_NAME = "extra_name"
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
+        }
+
+        mainViewModel.isError.observe(this) { message ->
+            showError(message)
         }
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
@@ -66,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setItemsData(items: List<Items> ) {
+    private fun setItemsData(items: List<Items>) {
         val adapter = UsersAdapter(items)
         binding.recyclerView.adapter = adapter
         adapter.setOnItemClickCallback(object : UsersAdapter.OnItemClickCallback {
@@ -77,7 +82,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
