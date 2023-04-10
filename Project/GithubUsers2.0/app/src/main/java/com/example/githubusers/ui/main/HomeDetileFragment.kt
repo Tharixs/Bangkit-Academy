@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.adapter.FollowAdapter
-import com.example.githubusers.databinding.FragmentHomeDetileBinding
-import com.example.githubusers.ui.insert.MainViewModel
 import com.example.githubusers.data.remote.response.FollowResponseItem
-
+import com.example.githubusers.databinding.FragmentHomeDetileBinding
+import com.example.githubusers.helper.ViewModelFactory
+import com.example.githubusers.ui.insert.MainViewModel
 
 class HomeDetileFragment : Fragment() {
 
@@ -25,16 +25,23 @@ class HomeDetileFragment : Fragment() {
         const val EXTRA_USERNAME = "extra_username"
     }
 
-    private lateinit var viewModel: MainViewModel
+    //  initiate view model with param
+    private val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelFactory(
+                requireActivity().application,
+                null
+            )
+        )[MainViewModel::class.java]
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeDetileBinding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(
-            this, ViewModelProvider.NewInstanceFactory()
-        )[MainViewModel::class.java]
 
         viewModel.following.observe(viewLifecycleOwner) { following ->
             setFollowingsData(following)

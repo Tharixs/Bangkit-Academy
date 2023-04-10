@@ -32,4 +32,8 @@ class FavoriteRepository(application: Application) {
         executorService.execute { mFavoriteDao.delete(favorite) }
     }
 
+    fun getFavoriteByUsername(username: String): LiveData<Favorite> =
+        mFavoriteDao.getFavoriteByUsername(username)
+
+
 }

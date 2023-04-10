@@ -1,6 +1,7 @@
 package com.example.githubusers.ui.main
 
 import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -9,27 +10,45 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubusers.*
+import com.example.githubusers.R
 import com.example.githubusers.adapter.UsersAdapter
-import com.example.githubusers.databinding.ActivityMainBinding
-import com.example.githubusers.ui.insert.MainViewModel
+import com.example.githubusers.data.local.pref.SettingPref
 import com.example.githubusers.data.remote.response.Items
+import com.example.githubusers.databinding.ActivityMainBinding
 import com.example.githubusers.helper.ViewModelFactory
+import com.example.githubusers.ui.insert.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
-    private val mainViewModel by viewModels<MainViewModel>{ ViewModelFactory(application) }
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
+    private val mainViewModel by viewModels<MainViewModel> { ViewModelFactory(application, null) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         supportActionBar?.title = "Github Users"
+
+        val pref = SettingPref.getInstance(dataStore)
+        val mainVModel =
+            ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
+        mainVModel.getThemeSettings().observe(this) { isDarkMode ->
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         mainViewModel.items.observe(this) { items ->
             setItemsData(items)
@@ -96,9 +115,10 @@ class MainActivity : AppCompatActivity() {
         val adapter = UsersAdapter(items)
         binding?.recyclerView?.adapter = adapter
         adapter.setOnItemClickCallback(object : UsersAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: String) {
+            override fun onItemClicked(data: String, avatar: String) {
                 val intent = Intent(this@MainActivity, DetileUserGitActivity::class.java)
                 intent.putExtra(DetileUserGitActivity.EXTRA_NAME, data)
+                intent.putExtra(DetileUserGitActivity.EXTRA_AVATAR, avatar)
                 startActivity(intent)
             }
         })

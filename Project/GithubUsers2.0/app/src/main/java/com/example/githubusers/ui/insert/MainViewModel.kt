@@ -2,23 +2,26 @@ package com.example.githubusers.ui.insert
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.githubusers.data.remote.retrofit.ApiConfig
+import androidx.lifecycle.*
 import com.example.githubusers.data.local.entity.Favorite
+import com.example.githubusers.data.local.pref.SettingPref
 import com.example.githubusers.data.remote.FavoriteRepository
 import com.example.githubusers.data.remote.response.DetileUserResponse
 import com.example.githubusers.data.remote.response.FollowResponseItem
 import com.example.githubusers.data.remote.response.Items
 import com.example.githubusers.data.remote.response.UsersGitResponse
+import com.example.githubusers.data.remote.retrofit.ApiConfig
+import kotlinx.coroutines.launch
 import retrofit2.Callback
 
 
-class MainViewModel(application: Application) : ViewModel() {
+class MainViewModel(application: Application, private val pref: SettingPref? = null) : ViewModel() {
 
     private val _items = MutableLiveData<List<Items>>()
     val items: LiveData<List<Items>> = _items
+
+    private val _favorite = MutableLiveData<List<Favorite>>()
+    val favorite: LiveData<List<Favorite>> = _favorite
 
     private val _detileRes = MutableLiveData<DetileUserResponse>()
     val detile: LiveData<DetileUserResponse> = _detileRes
@@ -38,12 +41,24 @@ class MainViewModel(application: Application) : ViewModel() {
     private val mFavoriteRepository: FavoriteRepository = FavoriteRepository(application)
 
 
+    fun getThemeSettings(): LiveData<Boolean> {
+        return pref!!.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkMode: Boolean) {
+        viewModelScope.launch {
+            pref!!.setThemeSetting(isDarkMode)
+        }
+    }
+
+
     companion object {
         private const val TAG = "MainViewModel"
     }
 
     init {
         getDataUserGit()
+
     }
 
     fun getDataUserGit(q: String = "Aril") {

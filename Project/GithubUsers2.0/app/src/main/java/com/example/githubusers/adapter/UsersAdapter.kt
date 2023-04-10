@@ -29,7 +29,8 @@ class UsersAdapter(private val listUsers: List<Items>) :
         Glide.with(holder.profile.context).load(listUsers[position].avatarUrl).into(holder.profile)
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(
-                listUsers[holder.adapterPosition].login
+                listUsers[holder.adapterPosition].login,
+                listUsers[holder.adapterPosition].avatarUrl
             )
         }
     }
@@ -42,7 +43,7 @@ class UsersAdapter(private val listUsers: List<Items>) :
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: String)
+        fun onItemClicked(data: String, avatar: String)
     }
 
 }
