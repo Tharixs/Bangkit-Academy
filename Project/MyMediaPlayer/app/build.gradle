@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.mysound'
+    namespace 'com.example.mymediaplayer'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.mysound"
-        minSdk 24
+        applicationId "com.example.mymediaplayer"
+        minSdk 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -24,22 +24,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
     }
-//    binding
-    buildFeatures {
-        viewBinding true
-    }
-    buildToolsVersion '33.0.2'
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
