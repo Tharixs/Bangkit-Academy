@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.mymediaplayer'
+    namespace 'com.example.myplayer'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.mymediaplayer"
+        applicationId "com.example.myplayer"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -24,22 +24,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-//    binding
-    buildFeatures {
-        viewBinding true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildToolsVersion '33.0.2'
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
