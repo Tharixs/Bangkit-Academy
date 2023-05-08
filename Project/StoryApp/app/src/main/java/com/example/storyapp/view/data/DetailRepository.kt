@@ -11,15 +11,16 @@ import com.example.storyapp.view.retrofit.ApiService
 
 class DetailRepository(
     private val detailDatabase: DetailDatabase,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val tokenManager: String
 ) {
     fun getDetail(): LiveData<PagingData<DetailResponse>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 10
+                pageSize = 5
             ),
             pagingSourceFactory = {
-                DetailPagingSource(apiService)
+                DetailPagingSource(apiService, tokenManager)
             }
         ).liveData
     }

@@ -17,6 +17,7 @@ import com.example.storyapp.view.adapter.StoryAdapter
 import com.example.storyapp.view.login.LoginActivity
 import com.example.storyapp.view.model.MainViewModel
 import com.example.storyapp.view.model.TokenManager
+import com.example.storyapp.view.network.DetailResponse
 import com.example.storyapp.view.response.ListStoryItem
 
 class MainActivity : AppCompatActivity() {
@@ -42,9 +43,10 @@ class MainActivity : AppCompatActivity() {
 
             val factory = MainViewModelFactory(getSharedPreferences("prefs", MODE_PRIVATE), this)
             myViewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
-            myViewModel.items.observe(this) { story ->
-                setItemsData(story)
-            }
+//            myViewModel.items.observe(this) { story ->
+//                setItemsData(story)
+//            }
+             getData()
         }
 
         binding.addBtn.setOnClickListener {
@@ -52,7 +54,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        getData()
 
     }
 

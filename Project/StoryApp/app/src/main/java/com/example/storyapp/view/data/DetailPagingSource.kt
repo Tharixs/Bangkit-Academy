@@ -1,19 +1,15 @@
 package com.example.storyapp.view.data
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.storyapp.view.model.TokenManager
 import com.example.storyapp.view.network.DetailResponse
 import com.example.storyapp.view.retrofit.ApiService
 
 class DetailPagingSource(
-    private val apiService: ApiService,
+    private val apiService: ApiService, private val tokenManager: String
 ) : PagingSource<Int, DetailResponse>() {
 
-    private lateinit var tokenManager: TokenManager
 
     private companion object {
         const val STARTING_PAGE_INDEX = 1
@@ -29,9 +25,9 @@ class DetailPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DetailResponse> {
         return try {
             val position = params.key ?: STARTING_PAGE_INDEX
-            Log.e("tokenSource", tokenManager.getToken().toString())
-            val responseData = apiService.getStoriesItem(
-                "Bearer ${tokenManager.getToken()}",
+            Log.e("tokenSource", tokenManager)
+            val responseData = apiService.getAllStories(
+                tokenManager,
                 position,
                 params.loadSize,
                 1
@@ -42,7 +38,7 @@ class DetailPagingSource(
                 nextKey = if (responseData.isEmpty()) null else position + 1
             )
         } catch (e: Exception) {
-            LoadResult.Error(e)
+           return LoadResult.Error(e)
         }
     }
 

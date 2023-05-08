@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "detail")
 data class DetailResponse(
+
     @PrimaryKey
     @field:SerializedName("id")
     val id: String,

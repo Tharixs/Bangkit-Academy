@@ -48,7 +48,6 @@ class MainViewModel(
     }
 
     private fun getStory(tokenManager: String) {
-        Log.e("token: ", tokenManager)
         val client = ApiConfig.getApiService().getStories("Bearer $tokenManager", null, null, null)
         client.enqueue(object : Callback<StoriesResponse> {
             override fun onResponse(

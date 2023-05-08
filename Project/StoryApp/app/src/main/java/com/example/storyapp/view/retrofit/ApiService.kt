@@ -50,7 +50,7 @@ interface ApiService {
     ): Call<AddResponse>
 
 @GET("stories")
-    fun getStoriesItem(
+    fun getAllStories(
         @Header("Authorization") token: String,
         @Query("page") page: Int?,
         @Query("size") size: Int?,
