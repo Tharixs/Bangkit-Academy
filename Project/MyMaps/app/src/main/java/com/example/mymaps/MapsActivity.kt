@@ -40,10 +40,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-//        get mark with curennt location from
+        mMap.uiSettings.isZoomControlsEnabled=true
+        mMap.uiSettings.isIndoorLevelPickerEnabled=true
+        mMap.uiSettings.isCompassEnabled=true
+        mMap.uiSettings.isMapToolbarEnabled=true
 
-        mMap.addMarker(MarkerOptions().position(indo).title("Marker in Indo"))
+        // Add a marker in Sydney and move the camera
+        val indo = LatLng(-6.1753924, 106.8271528)
+        mMap.addMarker(MarkerOptions().position(indo).title("Marker in Indonesia"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(indo))
+
+
     }
 }

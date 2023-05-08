@@ -65,8 +65,6 @@ class MainActivity : AppCompatActivity() {
         binding?.recyclerView?.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding?.recyclerView?.addItemDecoration(itemDecoration)
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

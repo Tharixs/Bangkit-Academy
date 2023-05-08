@@ -58,7 +58,6 @@
         app:layout_constraintStart_toEndOf="@+id/about_login"
         app:layout_constraintTop_toBottomOf="@+id/about_login" />
 
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
