@@ -13,7 +13,6 @@ data class StoriesResponse(
     @field:SerializedName("listStory")
     val listStory: List<ListStoryItem>
 )
-
 data class ListStoryItem(
 
     @field:SerializedName("photoUrl")

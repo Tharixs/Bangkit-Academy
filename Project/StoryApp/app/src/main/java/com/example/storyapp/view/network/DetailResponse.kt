@@ -1,8 +1,20 @@
 package com.example.storyapp.view.network
 
+import android.telecom.Call
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+
+data class DetailStoriesResponse(
+    @field:SerializedName("error")
+    val error: Boolean,
+
+    @field:SerializedName("message")
+    val message: String,
+
+    @field:SerializedName("listStory")
+    val listStory: List<DetailResponse>
+)
 
 @Entity(tableName = "detail")
 data class DetailResponse(

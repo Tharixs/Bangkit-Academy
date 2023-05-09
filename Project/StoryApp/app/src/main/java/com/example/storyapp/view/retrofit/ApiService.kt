@@ -1,6 +1,6 @@
 package com.example.storyapp.view.retrofit
 
-import com.example.storyapp.view.network.DetailResponse
+import com.example.storyapp.view.network.DetailStoriesResponse
 import com.example.storyapp.view.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -49,11 +49,12 @@ interface ApiService {
         @Part("description") description: RequestBody,
     ): Call<AddResponse>
 
-@GET("stories")
-    fun getAllStories(
+    @GET("stories")
+    suspend fun getAllStories(
         @Header("Authorization") token: String,
         @Query("page") page: Int?,
         @Query("size") size: Int?,
         @Query("location") location: Int?
-    ): List<DetailResponse>
+    ): DetailStoriesResponse
+
 }

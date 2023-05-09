@@ -9,8 +9,6 @@ import com.example.storyapp.view.retrofit.ApiService
 class DetailPagingSource(
     private val apiService: ApiService, private val tokenManager: String
 ) : PagingSource<Int, DetailResponse>() {
-
-
     private companion object {
         const val STARTING_PAGE_INDEX = 1
     }
@@ -30,15 +28,16 @@ class DetailPagingSource(
                 tokenManager,
                 position,
                 params.loadSize,
-                1
+                0
             )
             LoadResult.Page(
-                data = responseData,
+                data = responseData.listStory,
                 prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
-                nextKey = if (responseData.isEmpty()) null else position + 1
+                nextKey = if (responseData.listStory.isEmpty()) null else position + 1
             )
         } catch (e: Exception) {
-           return LoadResult.Error(e)
+            Log.e("Exception", e.toString())
+            LoadResult.Error(e)
         }
     }
 

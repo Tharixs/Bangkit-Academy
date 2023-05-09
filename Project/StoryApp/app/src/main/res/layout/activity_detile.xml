@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/ivStory"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="500dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:scaleType="centerCrop"

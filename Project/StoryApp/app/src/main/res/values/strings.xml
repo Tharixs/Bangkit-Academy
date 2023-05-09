@@ -23,5 +23,6 @@
     <string name="hintDesk">Deskripsi</string>
     <string name="upload">Unggah</string>
     <string name="maps">Maps</string>
+    <string name="retry">Muat Ulang</string>
 
 </resources>

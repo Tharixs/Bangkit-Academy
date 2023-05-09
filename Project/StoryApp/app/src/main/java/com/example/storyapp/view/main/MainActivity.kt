@@ -13,6 +13,7 @@ import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.view.MainViewModelFactory
 import com.example.storyapp.view.adapter.DetailAdapter
+import com.example.storyapp.view.adapter.LoadingStateAdapter
 import com.example.storyapp.view.adapter.StoryAdapter
 import com.example.storyapp.view.login.LoginActivity
 import com.example.storyapp.view.model.MainViewModel
@@ -43,10 +44,8 @@ class MainActivity : AppCompatActivity() {
 
             val factory = MainViewModelFactory(getSharedPreferences("prefs", MODE_PRIVATE), this)
             myViewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
-//            myViewModel.items.observe(this) { story ->
-//                setItemsData(story)
-//            }
-             getData()
+
+            getData()
         }
 
         binding.addBtn.setOnClickListener {
@@ -63,20 +62,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setItemsData(items: List<ListStoryItem>) {
-        val adapter = StoryAdapter(items)
-        binding.rvStory.adapter = adapter
-        adapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
-            override fun onItemClicked(name: String, avatar: String, id: String) {
-                val intent = Intent(this@MainActivity, DetileActivity::class.java)
-                intent.putExtra(DetileActivity.EXTRA_ID, id)
-                startActivity(
-                    intent,
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity).toBundle()
-                )
-            }
-        })
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -97,7 +82,22 @@ class MainActivity : AppCompatActivity() {
     private fun getData() {
         val adapter = DetailAdapter()
         binding.rvStory.adapter = adapter
-        myViewModel.detail.observe(this){
+        adapter.setOnItemClickCallback(object : DetailAdapter.OnItemClickCallback {
+            override fun onItemClicked(name: String, avatar: String, id: String) {
+                val intent = Intent(this@MainActivity, DetileActivity::class.java)
+                intent.putExtra(DetileActivity.EXTRA_ID, id)
+                startActivity(
+                    intent,
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity).toBundle()
+                )
+            }
+        })
+        binding.rvStory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        myViewModel.detail.observe(this) {
             adapter.submitData(lifecycle, it)
         }
     }

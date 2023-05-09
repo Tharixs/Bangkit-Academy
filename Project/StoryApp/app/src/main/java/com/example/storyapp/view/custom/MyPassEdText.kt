@@ -29,10 +29,10 @@ class MyPassEdText : AppCompatEditText {
     ) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         val pass = text.toString()
-        if (pass.isNotEmpty() && !isPassValid(pass)) {
-            error = errorMessage
+        error = if (pass.isNotEmpty() && !isPassValid(pass)) {
+            errorMessage
         } else {
-            error = null
+            null
         }
     }
 

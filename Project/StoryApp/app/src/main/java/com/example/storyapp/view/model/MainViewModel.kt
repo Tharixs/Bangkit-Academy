@@ -89,7 +89,6 @@ class MainViewModel(
     }
 
     fun getDataWithLocation(location: Int) {
-
         val client = ApiConfig.getApiService()
             .getStories("Bearer ${tokenManager.getToken().toString()}", null, null, location)
         client.enqueue(object : Callback<StoriesResponse> {

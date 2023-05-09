@@ -1,6 +1,7 @@
 package com.example.storyapp.view.main
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.os.Bundle
@@ -13,6 +14,7 @@ import com.example.storyapp.R
 import com.example.storyapp.databinding.ActivityMapsBinding
 import com.example.storyapp.view.MainViewModelFactory
 import com.example.storyapp.view.model.MainViewModel
+import com.example.storyapp.view.network.DetailResponse
 import com.example.storyapp.view.response.ListStoryItem
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

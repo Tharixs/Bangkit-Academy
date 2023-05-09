@@ -36,7 +36,7 @@ class AddStoryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddStoryBinding
     private var getFile: File? = null
-    private lateinit var tokenManager : TokenManager
+    private lateinit var tokenManager: TokenManager
 
     companion object {
         const val CAMERAX_RESULT = 200
@@ -133,11 +133,11 @@ class AddStoryActivity : AppCompatActivity() {
         }
     }
 
-     private fun uploadImage(token: String) {
+    private fun uploadImage(token: String) {
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
             val deskText = binding.edDeskText.text.toString()
-            val description =deskText.toRequestBody("text/plain".toMediaType())
+            val description = deskText.toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "photo",
@@ -145,7 +145,9 @@ class AddStoryActivity : AppCompatActivity() {
                 requestImageFile
             )
             val apiService = ApiConfig.getApiService()
-            val uploadImageRequest = apiService.uploadImage("Bearer $token",imageMultipart, description)
+            val uploadImageRequest = apiService.uploadImage(
+                "Bearer $token", imageMultipart, description
+            )
             uploadImageRequest.enqueue(object : Callback<AddResponse> {
                 override fun onResponse(
                     call: Call<AddResponse>,
@@ -162,7 +164,11 @@ class AddStoryActivity : AppCompatActivity() {
                             startActivity(Intent(this@AddStoryActivity, MainActivity::class.java))
                         }
                     } else {
-                        Toast.makeText(this@AddStoryActivity, response.message(), Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            this@AddStoryActivity,
+                            response.message(),
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
                 }
@@ -173,7 +179,11 @@ class AddStoryActivity : AppCompatActivity() {
 
             })
         } else {
-            Toast.makeText(this@AddStoryActivity, "Masukkan gambar terlebih dahulu", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                this@AddStoryActivity,
+                "Masukkan gambar terlebih dahulu",
+                Toast.LENGTH_SHORT
+            )
                 .show()
         }
     }
