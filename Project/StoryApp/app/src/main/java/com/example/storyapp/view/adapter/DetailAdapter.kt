@@ -46,7 +46,7 @@ class DetailAdapter : PagingDataAdapter<DetailResponse, DetailAdapter.MyViewHold
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DetailResponse>() {
+         public val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DetailResponse>() {
             override fun areItemsTheSame(
                 oldItem: DetailResponse,
                 newItem: DetailResponse

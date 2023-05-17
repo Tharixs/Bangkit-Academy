@@ -12,7 +12,6 @@ class NewsEntity(
     @field:ColumnInfo(name = "title")
     @field:PrimaryKey
     val title: String,
-
     @field:ColumnInfo(name = "publishedAt")
     val publishedAt: String,
 
