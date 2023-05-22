@@ -14,12 +14,9 @@ import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.view.MainViewModelFactory
 import com.example.storyapp.view.adapter.DetailAdapter
 import com.example.storyapp.view.adapter.LoadingStateAdapter
-import com.example.storyapp.view.adapter.StoryAdapter
 import com.example.storyapp.view.login.LoginActivity
 import com.example.storyapp.view.model.MainViewModel
 import com.example.storyapp.view.model.TokenManager
-import com.example.storyapp.view.network.DetailResponse
-import com.example.storyapp.view.response.ListStoryItem
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -34,9 +31,12 @@ class MainActivity : AppCompatActivity() {
         tokenManager = TokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE))
 
         if (tokenManager.getToken() == null) {
+
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
+
         } else {
+
             val layoutManager = LinearLayoutManager(this)
             binding.rvStory.layoutManager = layoutManager
             val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, AddStoryActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -23,7 +23,6 @@ class MainViewModel(
     private val sharedPreferences: SharedPreferences,
     detailRepository: DetailRepository
 ) : ViewModel() {
-
     //    token
     private val _token = MutableLiveData<String>()
     val token: LiveData<String> = _token
