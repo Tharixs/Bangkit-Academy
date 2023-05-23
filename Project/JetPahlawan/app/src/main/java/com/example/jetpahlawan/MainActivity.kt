@@ -1,4 +1,4 @@
-package com.example.mynavdrawer
+package com.example.jetpahlawan
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,21 +10,34 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.mynavdrawer.ui.theme.MyNavDrawerTheme
+import com.example.jetpahlawan.ui.theme.JetPahlawanTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyNavDrawerTheme {
+            JetPahlawanTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                   MyNavDrawerApp()
+                    Greeting("Android")
                 }
             }
         }
+    }
+}
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    JetPahlawanTheme {
+        Greeting("Android")
     }
 }
