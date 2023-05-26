@@ -1,4 +1,4 @@
-package com.dicoding.jetreward.ui.components
+package com.example.jetfood.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -10,28 +10,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.dicoding.jetreward.R
-import com.dicoding.jetreward.ui.theme.JetRewardTheme
-import com.dicoding.jetreward.ui.theme.Shapes
+import com.example.jetfood.R
+import com.example.jetfood.ui.theme.JetFoodTheme
+import com.example.jetfood.ui.theme.Shapes
 
 @Composable
-fun RewardItem(
+fun FoodItem(
     image: Int,
     title: String,
-    requiredPoint: Int,
+    price: Int,
     modifier: Modifier = Modifier,
 ) {
+
     Column(
-                modifier = modifier
-            ) {
-                Image(
-                    painter = painterResource(image),
-                    contentDescription = null,
+        modifier = modifier
+    ) {
+        Image(
+            painter = painterResource(image),
+            contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(170.dp)
@@ -46,7 +46,7 @@ fun RewardItem(
             )
         )
         Text(
-            text = stringResource(R.string.required_point, requiredPoint),
+            text = "Rp. $price",
             style = MaterialTheme.typography.subtitle2,
             color = MaterialTheme.colors.secondary
         )
@@ -56,7 +56,11 @@ fun RewardItem(
 @Composable
 @Preview(showBackground = true)
 fun RewardItemPreview() {
-    JetRewardTheme {
-        RewardItem(R.drawable.reward_4, "Jaket Hoodie Dicoding", 4000)
+    JetFoodTheme {
+        FoodItem(
+            R.drawable.burger,
+            "Burger",
+            55000
+        )
     }
 }

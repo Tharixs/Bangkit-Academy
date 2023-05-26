@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Jet Food</string>
+    <string name="menu_chart">Chart</string>
+    <string name="total_pesanan">Total pesanan : %d </string>
+    <string name="add_to_chart">Tambah ke Keranjang : Rp. %d </string>
+    <string name="share_message">Halo, i want to buy %1$d Foods in JetFood with total %2$d Price! </string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="back">Back</string>
+    <string name="menu_profile">profile</string>
+    <string name="menu_home">home</string>
+    <string name="jetFood_menu">JetFood Menu</string>
+    <string name="profile_image">image profile</string>
+    <string name="profile_name">Tharixs Akbar Ibnu Azis</string>
+    <string name="profile_email">torikakbar2512@gmail.com</string>
+    <string name="search_hero">cari makanan mu</string>
 </resources>
