@@ -14,9 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import com.example.jetfood.navigation.Screen
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -24,13 +22,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.jetfood.data.FoodRepository
 import com.example.jetfood.navigation.NavigationItem
-import com.example.jetfood.ui.ViewModelFactory
+import com.example.jetfood.navigation.Screen
 import com.example.jetfood.ui.screen.chart.ChartScreen
 import com.example.jetfood.ui.screen.detail.DetailScreen
 import com.example.jetfood.ui.screen.home.HomeScreen
-import com.example.jetfood.ui.screen.home.HomeViewModel
 import com.example.jetfood.ui.screen.profile.ProfileScreen
 import com.example.jetfood.ui.theme.JetFoodTheme
 
@@ -177,7 +173,7 @@ private fun shareOrder(context: Context, summary: String) {
 @Preview(showBackground = true)
 @Composable
 fun JetHeroesAppPreview() {
-    JetFoodTheme() {
+    JetFoodTheme {
         JetFoodApp()
     }
 }
