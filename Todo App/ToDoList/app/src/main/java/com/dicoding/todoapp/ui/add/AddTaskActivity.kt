@@ -6,13 +6,21 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.todoapp.R
+import com.dicoding.todoapp.ui.ViewModelFactory
 import com.dicoding.todoapp.utils.DatePickerFragment
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
 class AddTaskActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener {
     private var dueDateMillis: Long = System.currentTimeMillis()
+    private lateinit var addTaskViewModel: AddTaskViewModel
+
+    private lateinit var detailEdTitle: TextView
+    private lateinit var detailEdDescription: TextView
+    private lateinit var detailEdDueDate: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +28,12 @@ class AddTaskActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
 
         supportActionBar?.title = getString(R.string.add_task)
 
+        detailEdTitle = findViewById(R.id.add_ed_title)
+        detailEdDescription = findViewById(R.id.add_ed_description)
+        detailEdDueDate = findViewById(R.id.add_tv_due_date)
+
+        val factory = ViewModelFactory.getInstance(this)
+        addTaskViewModel = ViewModelProvider(this, factory)[AddTaskViewModel::class.java]
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -31,8 +45,15 @@ class AddTaskActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
         return when (item.itemId) {
             R.id.action_save -> {
                 //TODO 12 : Create AddTaskViewModel and insert new task to database
+                addTaskViewModel.insertTask(
+                    detailEdTitle.text.toString(),
+                    detailEdDescription.text.toString(),
+                    dueDateMillis
+                )
+                finish()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -47,7 +68,6 @@ class AddTaskActivity : AppCompatActivity(), DatePickerFragment.DialogDateListen
         calendar.set(year, month, dayOfMonth)
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         findViewById<TextView>(R.id.add_tv_due_date).text = dateFormat.format(calendar.time)
-
         dueDateMillis = calendar.timeInMillis
     }
 }
