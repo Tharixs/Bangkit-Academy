@@ -2,16 +2,23 @@ package com.dicoding.courseschedule.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
+import com.dicoding.courseschedule.data.DataRepository
+import com.dicoding.courseschedule.ui.add.AddCourseActivity
+import com.dicoding.courseschedule.ui.list.ListActivity
 import com.dicoding.courseschedule.ui.setting.SettingsActivity
 import com.dicoding.courseschedule.util.DayName
 import com.dicoding.courseschedule.util.QueryType
+import com.dicoding.courseschedule.util.SortType
 import com.dicoding.courseschedule.util.timeDifference
 
 //TODO 15 : Write UI test to validate when user tap Add Course (+) Menu, the AddCourseActivity is displayed
@@ -19,12 +26,24 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var viewModel: HomeViewModel
     private var queryType = QueryType.CURRENT_DAY
+    private lateinit var repository: DataRepository
 
     //TODO 5 : Show today schedule in CardHomeView and implement menu action
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         supportActionBar?.title = resources.getString(R.string.today_schedule)
+
+        repository = DataRepository.getInstance(this)!!
+        viewModel = HomeViewModel(repository)
+
+        val course = repository.getTodaySchedule()
+        if (course.isNotEmpty()) {
+            showTodaySchedule(course[0])
+        } else {
+            showTodaySchedule(null)
+        }
+
 
     }
 
@@ -34,9 +53,13 @@ class HomeActivity : AppCompatActivity() {
             val dayName = DayName.getByNumber(day)
             val time = String.format(getString(R.string.time_format), dayName, startTime, endTime)
             val remainingTime = timeDifference(day, startTime)
-
             val cardHome = findViewById<CardHomeView>(R.id.view_home)
 
+            cardHome.setCourseName(courseName)
+            cardHome.setTime(time)
+            cardHome.setRemainingTime(remainingTime)
+            cardHome.setLecturer(lecturer)
+            cardHome.setNote(note)
         }
 
         findViewById<TextView>(R.id.tv_empty_home).visibility =
@@ -57,6 +80,16 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_home, menu)
+
+        menu.findItem(R.id.action_list).setOnMenuItemClickListener {
+            startActivity(Intent(this, ListActivity::class.java))
+            true
+        }
+        menu.findItem(R.id.action_add).setOnMenuItemClickListener {
+            startActivity(Intent(this, AddCourseActivity::class.java))
+            true
+        }
+
         return true
     }
 

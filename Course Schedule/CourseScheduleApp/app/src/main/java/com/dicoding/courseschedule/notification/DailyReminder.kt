@@ -1,12 +1,25 @@
 package com.dicoding.courseschedule.notification
 
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.icu.util.Calendar
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
 import com.dicoding.courseschedule.data.DataRepository
+import com.dicoding.courseschedule.ui.home.HomeActivity
+import com.dicoding.courseschedule.util.ID_REPEATING
+import com.dicoding.courseschedule.util.NOTIFICATION_CHANNEL_ID
+import com.dicoding.courseschedule.util.NOTIFICATION_CHANNEL_NAME
+import com.dicoding.courseschedule.util.NOTIFICATION_ID
 import com.dicoding.courseschedule.util.executeThread
 
 class DailyReminder : BroadcastReceiver() {
@@ -23,11 +36,46 @@ class DailyReminder : BroadcastReceiver() {
     }
 
     //TODO 12 : Implement daily reminder for every 06.00 a.m using AlarmManager
+    @RequiresApi(Build.VERSION_CODES.N)
     fun setDailyReminder(context: Context) {
+
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alaramIntent = Intent(context, DailyReminder::class.java)
+        val pendingIntent =
+            PendingIntent.getBroadcast(
+                context,
+                ID_REPEATING,
+                alaramIntent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        val calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 6)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
 
     }
 
     fun cancelAlarm(context: Context) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val alaramIntent = Intent(context, DailyReminder::class.java)
+        val pendingIntent =
+            PendingIntent.getBroadcast(
+                context,
+                ID_REPEATING,
+                alaramIntent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        alarmManager.cancel(pendingIntent)
+        pendingIntent.cancel()
 
     }
 
@@ -39,5 +87,35 @@ class DailyReminder : BroadcastReceiver() {
             val courseData = String.format(timeString, it.startTime, it.endTime, it.courseName)
             notificationStyle.addLine(courseData)
         }
+
+        val intent = Intent(context, HomeActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            ID_REPEATING,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE)
+                as NotificationManager
+        val notification = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notifications)
+            .setContentIntent(pendingIntent)
+            .setStyle(notificationStyle)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                NOTIFICATION_CHANNEL_ID,
+                NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            notification.setChannelId(NOTIFICATION_CHANNEL_ID)
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        notificationManager.notify(NOTIFICATION_ID, notification.build())
+
     }
 }
