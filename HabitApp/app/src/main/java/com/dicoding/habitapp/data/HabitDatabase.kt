@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.dicoding.habitapp.R
 import org.json.JSONArray
 import org.json.JSONException
@@ -11,6 +12,8 @@ import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 //TODO 3 : Define room database class and prepopulate database using JSON
 @Database(entities = [Habit::class], version = 1, exportSchema = true)
@@ -29,9 +32,18 @@ abstract class HabitDatabase : RoomDatabase() {
                     context.applicationContext,
                     HabitDatabase::class.java,
                     "habit.db"
-                ).allowMainThreadQueries().build()
+                ).addCallback(object : Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        INSTANCE?.let { database ->
+                            Executors.newSingleThreadExecutor().execute {
+                                fillWithStartingData(context, database.habitDao())
+                            }
+                        }
+                    }
+                })
+                    .allowMainThreadQueries().build()
                 INSTANCE = instance
-                fillWithStartingData(context, instance.habitDao())
                 instance
             }
 

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">suitmedia</string>
+    <string name="btnnext">NEXT</string>
+    <string name="btncheck">CHECK</string>
+    <string name="imageprofile">imageProfile</string>
+    <string name="bacground">bacground</string>
+    <string name="text_btn_name">Name</string>
+    <string name="txt_btn_palindrome">Palindrome</string>
+    <string name="title_second_activity">Second Screen</string>
+    <string name="title_third_activity">Thrid Screen</string>
+    <string name="selected_user_name">Selected User Name</string>
+</resources>

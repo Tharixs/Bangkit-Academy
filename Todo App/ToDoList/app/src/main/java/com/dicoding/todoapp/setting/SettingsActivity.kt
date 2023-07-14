@@ -62,7 +62,7 @@ class SettingsActivity : AppCompatActivity() {
                 .putString(NOTIFICATION_CHANNEL_ID, channelName)
                 .build()
             val reminderRequest =
-                PeriodicWorkRequestBuilder<NotificationWorker>(15, TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<NotificationWorker>(1, TimeUnit.DAYS)
                     .setInputData(data)
                     .build()
             WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
