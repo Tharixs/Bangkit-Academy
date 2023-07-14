@@ -22,13 +22,12 @@ class PagingDataSource(private val apiService: ApiService) : PagingSource<Int, D
         return try {
             val position = params.key ?: STARTING_PAGE_INDEX
             val response = apiService.getData(position, params.loadSize)
-
             val data = response.data
 
             LoadResult.Page(
                 data = data!!.filterNotNull(),
                 prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
-                nextKey = if (response.data.isEmpty()) null else position + 1
+                nextKey = if (data.isNullOrEmpty()) null else position + 1
             )
         } catch (exception: Exception) {
             return LoadResult.Error(exception)

@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.suitmedia.MainViewModelFactory
 import com.example.suitmedia.R
 import com.example.suitmedia.adapter.ListDataAdapter
+import com.example.suitmedia.data.LoadingStateAdapter
 import com.example.suitmedia.databinding.ActivityThirdScreenBinding
 import com.example.suitmedia.model.ListDataModel
 import com.example.suitmedia.utils.EXTRA_NAME_USER
 
+@Suppress("DEPRECATION")
 class ThirdScreen : AppCompatActivity() {
 
     private lateinit var binding: ActivityThirdScreenBinding
@@ -42,7 +44,6 @@ class ThirdScreen : AppCompatActivity() {
         val title = actionBarLayout.findViewById<TextView>(R.id.title_action_bar)
         val backButton = actionBarLayout.findViewById<ImageButton>(R.id.backButton)
 
-
         backButton.setOnClickListener {
             onBackPressed()
         }
@@ -57,10 +58,14 @@ class ThirdScreen : AppCompatActivity() {
 
         supportActionBar?.setCustomView(actionBarLayout, layoutParams)
 
-
         binding.rvData.layoutManager = LinearLayoutManager(this)
-        binding.rvData.adapter = adapter
 
+        getData()
+
+    }
+
+    private fun getData() {
+        binding.rvData.adapter = adapter
         adapter.setOnItemClickCallback(object : ListDataAdapter.OnItemClickCallback {
             override fun onItemClicked(
                 name: String,
@@ -70,9 +75,12 @@ class ThirdScreen : AppCompatActivity() {
                 val intent = Intent(this@ThirdScreen, SecondActivity::class.java)
                 intent.putExtra(EXTRA_NAME_USER, name)
                 startActivity(intent)
-                finish()
             }
         })
+
+        binding.rvData.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter { adapter.retry() }
+        )
 
         mainViewModel.data.observe(
             this,
@@ -80,5 +88,6 @@ class ThirdScreen : AppCompatActivity() {
             adapter.submitData(lifecycle, data)
         }
     }
+
 
 }

@@ -9,4 +9,5 @@
     <string name="title_second_activity">Second Screen</string>
     <string name="title_third_activity">Thrid Screen</string>
     <string name="selected_user_name">Selected User Name</string>
+    <string name="retry">Ulangi</string>
 </resources>

@@ -15,11 +15,6 @@ import com.example.suitmedia.databinding.ActivitySecondBinding
 import com.example.suitmedia.utils.EXTRA_NAME
 import com.example.suitmedia.utils.EXTRA_NAME_USER
 
-private const val DEFAULT_NAME = "Default Name"
-private const val DEFAULT_NAME_USER = "Default Name User"
-private const val SHARED_PREF_NAME = "MySharedPrefs"
-private const val KEY_NAME = "name"
-private const val KEY_NAME_USER = "nameUser"
 
 @Suppress("DEPRECATION")
 class SecondActivity : AppCompatActivity() {
@@ -58,6 +53,12 @@ class SecondActivity : AppCompatActivity() {
         )
         supportActionBar?.setCustomView(actionBarLayout, layoutParams)
 
+        getData(savedInstanceState)
+        binding.btnChoseUser.setOnClickListener { choseUser() }
+
+    }
+
+    private fun getData(savedInstanceState: Bundle?) {
         sharedPrefs = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         if (savedInstanceState != null) {
             name = savedInstanceState.getString(EXTRA_NAME, DEFAULT_NAME) ?: getSavedName()
@@ -69,15 +70,12 @@ class SecondActivity : AppCompatActivity() {
         }
 
         binding.tvUserName.text = name
-
-        binding.btnChoseUser.setOnClickListener { choseUser() }
         binding.tvDetailUserName.text = nameUser
     }
 
     private fun choseUser() {
         val intent = Intent(this, ThirdScreen::class.java)
         startActivity(intent)
-        finish()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -106,5 +104,13 @@ class SecondActivity : AppCompatActivity() {
 
     private fun getSavedNameUser(): String {
         return sharedPrefs.getString(KEY_NAME_USER, DEFAULT_NAME_USER) ?: DEFAULT_NAME_USER
+    }
+
+    companion object {
+        private const val DEFAULT_NAME = "Default Name"
+        private const val DEFAULT_NAME_USER = "Selected User Name"
+        private const val SHARED_PREF_NAME = "MySharedPrefs"
+        private const val KEY_NAME = "name"
+        private const val KEY_NAME_USER = "nameUser"
     }
 }
