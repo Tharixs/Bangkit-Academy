@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -71,6 +71,8 @@ dependencies {
 
 //    de.hdodenhof.circleimageview.CircleImageView;
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 
 }
